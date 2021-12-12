@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - "db"
+    command: yarn dev
+    volumes:
+      - .:/user/app
+  db:
+    image: postgres
+    ports:
+      - 5431:5432
+    environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: romulo14
+          POSTGRES_DB: brisapix
+    volumes:
+      - "/tmp/database:/var/lib/postgresql/data"
